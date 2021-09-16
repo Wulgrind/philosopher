@@ -1,47 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   ft_createphilo.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 16:52:15 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 12:23:06 by qbrillai         ###   ########.fr       */
+/*   Created: 2021/09/16 10:39:22 by qbrillai          #+#    #+#             */
+/*   Updated: 2021/09/16 15:32:06 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	ft_isdigit(char **av)
+int	ft_mallocthread(t_param *p)
 {
-	int	i;
-	int	j;
-
-	i = 1;
-	while (av[i])
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (av[i][j] > '9' || av[i][j] < '0')
-				return (0);
-			j++;
-		}
-		i++;
-	}
+	p->thread_id = malloc(sizeof(pthread_t) * p->philosophers_nb);
+	if (p->thread_id)
+		return (-1);
 	return (1);
 }
 
-int	ft_parsing(t_param *p, char **av, int ac)
+int	ft_createphilo(t_param *p)
 {
-	if (!ft_isdigit(av))
-		return (0);
-	p->philosophers_nb = ft_atoi(av[1]);
-	p->tt_die = ft_atoi(av[2]);
-	p->tt_eat = ft_atoi(av[3]);
-	p->tt_sleep = ft_atoi(av[4]);
-	p-> end = 0;
-	if (ac == 6)
-		p->eat_nb = ft_atoi(av[5]);
+	int	checker;
+	void	*v;
+	pthread_t	id;
+
+	p->i = -1;
+	ft_mallocthread(p);
+	while (++p->i < p->philosophers_nb)
+	{
+		usleep(100000);
+		checker = pthread_create(&p->thread_id[p->i], NULL, ft_newphilo, (void *) p);
+		if (checker != 0)
+		{
+			return (-1);
+		}
+	}
 	return (1);
 }

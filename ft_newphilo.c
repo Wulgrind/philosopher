@@ -1,47 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   ft_newphilo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 16:52:15 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 12:23:06 by qbrillai         ###   ########.fr       */
+/*   Created: 2021/09/16 10:51:39 by qbrillai          #+#    #+#             */
+/*   Updated: 2021/09/16 15:32:47 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	ft_isdigit(char **av)
+int	ft_forks(t_param *p)
 {
 	int	i;
-	int	j;
 
-	i = 1;
-	while (av[i])
+	i = -1;
+	p->fork = malloc(sizeof(pthread_mutex_t) * p->philosophers_nb);
+	if (!p->fork)
+		return (-1);
+	while (++i < p->philosophers_nb)
 	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (av[i][j] > '9' || av[i][j] < '0')
-				return (0);
-			j++;
-		}
-		i++;
+		pthread_mutex_init(&p->fork[i], NULL);
 	}
+	p->phil_max = p->philosophers_nb - 1;
 	return (1);
 }
 
-int	ft_parsing(t_param *p, char **av, int ac)
+void	*ft_newphilo(void *v)
 {
-	if (!ft_isdigit(av))
-		return (0);
-	p->philosophers_nb = ft_atoi(av[1]);
-	p->tt_die = ft_atoi(av[2]);
-	p->tt_eat = ft_atoi(av[3]);
-	p->tt_sleep = ft_atoi(av[4]);
-	p-> end = 0;
-	if (ac == 6)
-		p->eat_nb = ft_atoi(av[5]);
-	return (1);
+	t_param	*c;
+	t_param p;
+
+
+	c = (t_param *) v;
+	p = *c;
+	return (NULL);
 }
