@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_createphilo.c                                   :+:      :+:    :+:   */
+/*   ft_write.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/16 10:39:22 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 16:40:05 by qbrillai         ###   ########.fr       */
+/*   Created: 2021/09/16 17:09:59 by qbrillai          #+#    #+#             */
+/*   Updated: 2021/09/16 17:11:10 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	ft_mallocthread(t_param *p)
+void	ft_putchar(char c)
 {
-	p->thread_id = malloc(sizeof(pthread_t) * p->philosophers_nb);
-	if (p->thread_id)
-		return (-1);
-	return (1);
+	write(1, &c, 1);
 }
 
-int	ft_createphilo(t_param *p)
+void	ft_putstr(char *str)
 {
-	int	checker;
-	void	*v;
-	pthread_t	id;
+	int	i;
 
-	p->i = -1;
-	ft_mallocthread(p);
-	while (++p->i < p->philosophers_nb)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		usleep(100000);
-		checker = pthread_create(&p->thread_id[p->i], NULL, ft_newphilo, (void *) p);
-		if (checker != 0)
-		{
-			return (-1);
-		}
+		ft_putchar(str[i]);
+		i++;
 	}
-	return (1);
 }

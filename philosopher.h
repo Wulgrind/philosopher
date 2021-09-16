@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:45:46 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 15:24:13 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/16 17:34:19 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/time.h>
 
 typedef struct s_param
 {
@@ -36,5 +37,8 @@ int	ft_createphilo(t_param *p);
 void	*ft_newphilo(void *v);
 int	ft_forks(t_param *p);
 int	ft_atoi(const char *str);
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
+char	*ft_itoa(int nb);
 
 #endif
