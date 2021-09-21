@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:45:46 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/21 12:46:59 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/21 17:13:33 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_param
 	pthread_mutex_t *fork;
 	int	phil_max;
 	int	i;
+	int	start;
 } t_param;
 
 int	ft_parsing(t_param *p, char **av, int ac);
@@ -41,5 +42,7 @@ int	ft_atoi(const char *str);
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
 char	*ft_itoa(int nb);
+int	ft_time(t_param *p);
+void	ft_timestart(t_param *p);
 
 #endif

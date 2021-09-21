@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:39:22 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/21 15:46:28 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/21 16:58:03 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_createphilo(t_param *p)
 	int	j;
 
 	p->i = -1;
+	ft_timestart(p);
 	ft_mallocthread(p);
-	printf("%i", p->philosophers_nb);
 	while (++p->i < p->philosophers_nb)
 	{
 		j = p->i % 2;
