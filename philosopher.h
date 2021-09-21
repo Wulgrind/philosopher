@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:45:46 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 17:34:19 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/21 12:46:59 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <stdio.h>
 
 typedef struct s_param
 {

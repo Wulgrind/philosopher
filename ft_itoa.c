@@ -6,9 +6,29 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 17:14:10 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 17:15:14 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/21 12:25:13 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philosopher.h"
+
+int		len(long nb)
+{
+	int		len;
+
+	len = 0;
+	if (nb < 0)
+	{
+		nb = nb * -1;
+		len++;
+	}
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		len++;
+	}
+	return (len);
+}
 
 char	*ft_itoa(int nb)
 {

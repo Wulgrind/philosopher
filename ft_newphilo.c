@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:51:39 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 17:34:23 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/21 15:46:44 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,38 @@ int	ft_forks(t_param *p)
 	return (1);
 }
 
-void	ft_routine2(t_param *p, int i, int eat)
+void	ft_routine2(t_param *p, int i)
 {
 	ft_putstr("Philosopher ");
-	ft_putstr(num);
+	printf("%i", i);
 	ft_putstr(" is sleeping");
-	usleep(p->ttsleep);
+	usleep(p->tt_sleep);
 	ft_putstr("Philosopher ");
-	ft_putstr(num);
+	printf("%i", i);
 	ft_putstr(" is thinking\n");
 }
 
-void	ft_routine(t_param *p, int i, int eat)
+void	ft_routine(t_param *p, int i)
 {
 	char	*num;
 
-	num = itoa(i);
-		pthread_mutex_lock(p->fork[i]);
+	num = ft_itoa(i);
+		pthread_mutex_lock(&p->fork[i]);
 		ft_putstr("Philosopher ");
 		ft_putstr(num);
 		ft_putstr(" has taken a fork\n");
-		if (i < phil_max)
-			pthread_mutex_lock(p->fork[i + 1]);
+		if (i < p->phil_max)
+			pthread_mutex_lock(&p->fork[i + 1]);
 		else
-			pthread_mutex_lock(p->fork[0]);
+			pthread_mutex_lock(&p->fork[0]);
 	ft_putstr("Philosopher ");
 	ft_putstr(num);
-	ft_putstr(" has taken a fork\n";
+	ft_putstr(" has taken a fork\n");
 	ft_putstr("Philosopher ");
 	ft_putstr(num);
 	ft_putstr(" is eating\n");
-	usleep(p->tteat);
-	ft_routine2(p, i, eat);
+	usleep(p->tt_eat);
+	ft_routine2(p, i);
 }
 
 void	*ft_newphilo(void *v)
@@ -70,10 +70,13 @@ void	*ft_newphilo(void *v)
 	
 	c = (t_param *) v;
 	p = *c;
-	i = p->i
-	while (1)
+	i = p.i + 1;
+	pthread_mutex_lock(&p.fork[0]);
+	printf("philo nb %i ", i);
+	pthread_mutex_unlock(&p.fork[0]);
+	/*while (1)
 	{
-		ft_routine(p, i, eat);
-	}
+		ft_routine(&p, i);
+	}*/
 	return (NULL);
 }
