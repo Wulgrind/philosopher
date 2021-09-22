@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:45:46 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/21 17:13:33 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/22 10:50:21 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_param
 	int	end;
 	pthread_t	*thread_id;
 	pthread_mutex_t *fork;
+	pthread_mutex_t talk;
 	int	phil_max;
 	int	i;
 	int	start;
