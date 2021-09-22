@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:51:39 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/22 15:27:56 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/22 16:28:06 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_routine2(t_param *p, int i)
 	pthread_mutex_lock(&p->talk);
 	printf("(%i) Philosopher %i is sleeping\n", ft_time(p), i + 1);
 	pthread_mutex_unlock(&p->talk);
-	usleep(p->tt_sleep * 1000);
+	usleep(p->tt_sleep);
 	pthread_mutex_lock(&p->talk);
 	printf("(%i) Philosopher %i is thinking\n", ft_time(p), i + 1);
 	pthread_mutex_unlock(&p->talk);
@@ -58,8 +58,8 @@ void	ft_routine(t_param *p, int i)
 	pthread_mutex_lock(&p->talk);
 	printf("(%i) Philosopher %i is eating\n", ft_time(p), i + 1);
 	pthread_mutex_unlock(&p->talk);
-	usleep(p->tt_eat * 1000);
 	ft_eat(p, i);
+	usleep(p->tt_eat);
 	printf("test");
 	pthread_mutex_unlock(&p->fork[i]);
 	if (i < p->phil_max)
@@ -78,6 +78,7 @@ void	*ft_newphilo(void *v)
 	c = (t_param *) v;
 	p = *c;
 	i = p.i;
+	ft_eat(&p, i);
 	while (1)
 	{
 		ft_routine(c, i);
