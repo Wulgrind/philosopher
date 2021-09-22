@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:45:46 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/22 10:50:21 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:10:22 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_param
 	int	phil_max;
 	int	i;
 	int	start;
+	int *eat;
+	int	dead;
 } t_param;
 
 int	ft_parsing(t_param *p, char **av, int ac);
@@ -45,5 +47,7 @@ void	ft_putstr(char *str);
 char	*ft_itoa(int nb);
 int	ft_time(t_param *p);
 void	ft_timestart(t_param *p);
+void	*ft_death(void	*p);
+void	ft_eat(t_param *p, int i);
 
 #endif

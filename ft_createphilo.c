@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:39:22 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/22 12:27:57 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:25:55 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ int	ft_mallocthread(t_param *p)
 	return (1);
 }
 
+int	ft_malloceat(t_param *p)
+{
+	int	i;
+
+	i = -1;
+	p->eat = malloc(sizeof(int) * p->philosophers_nb);
+	if (!p->eat)
+		return (-1);
+	while (++i < p->philosophers_nb)
+	{
+		p->eat[i] = 0;
+	}
+	return (1);
+}
+
 int	ft_createphilo(t_param *p)
 {
 	int	checker;
@@ -29,6 +44,7 @@ int	ft_createphilo(t_param *p)
 	p->i = -1;
 	ft_timestart(p);
 	ft_mallocthread(p);
+	ft_malloceat(p);
 	while (++p->i < p->philosophers_nb)
 	{
 		if (p->i % 2 == 0)
@@ -50,9 +66,14 @@ int	ft_createphilo(t_param *p)
 		}
 		usleep(60);
 	}
-	int k = 0;
+	pthread_t threadid;
+	checker = pthread_create(&threadid, NULL, &ft_death, (void *) p);
+	int	k = 0;
+	p->dead = 0;
 	while (1)
 	{
+		if (p->dead == 1)
+			break;
 		k++;
 	}
 	return (1);
