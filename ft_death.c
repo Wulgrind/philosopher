@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:25:29 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/23 13:06:20 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 14:35:35 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,21 @@ void	ft_checkdeath2(t_param *p)
 {
 	int	j;
 
-	j = -1;
 	if (p->ac == 6)
 	{
-		while (++j < p->philosophers_nb)
+		while (1)
 		{
-			if (p->eat2[j] == p->eat_nb + 1)
+			j = -1;
+			while (++j < p->philosophers_nb)
 			{
-				pthread_mutex_lock(&p->talk);
-				p->dead = 1;
-				if (p->dead == 1)
+				if (p->eat2[j] != p->eat_nb + 1)
 					break ;
 			}
+			if (j == p->philosophers_nb)
+				break;
 		}
+		pthread_mutex_lock(&p->talk);
+		p->dead = 1;
 	}
 }
 
