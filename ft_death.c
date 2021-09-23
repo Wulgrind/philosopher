@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:25:29 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/22 15:49:30 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 10:15:50 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_checkdeath(t_param *p)
 		gettimeofday(&t, NULL);
 		current = t.tv_sec * 1000;
 		current += t.tv_usec / 1000;
-		if (current - p->eat[j] > (p->tt_die))
+		if ((current - p->eat[j]) > (p->tt_die))
 		{
 			pthread_mutex_lock(&p->talk);
 			printf("(%i) Philosopher %i died\n", ft_time(p), j + 1);
@@ -52,8 +52,9 @@ void	*ft_death(void	*v)
 	i = p.i;
 	c = (t_param *)	v;
 	p = *c;
-		while(1)
+	while(1)
 	{
+		usleep(100);
 		if (c->dead == 1)
 			break;
 		ft_checkdeath(c);
