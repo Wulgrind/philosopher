@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:39:22 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/23 11:57:31 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 13:15:07 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	ft_createphilo2(t_param *p)
 	pthread_t	threadid;
 
 	p->i = -1;
+	checker = 0;
 	while (++p->i < p->philosophers_nb)
 	{
 		if (p->i % 2 == 1)
@@ -61,16 +62,15 @@ int	ft_createphilo2(t_param *p)
 int	ft_createphilo(t_param *p)
 {
 	int			checker;
-	void		*v;
-	pthread_t	id;
 	int			k;
+	int			i;
 
-	p->i = -1;
+	i = -1;
 	k = 0;
-	while (++p->i < p->philosophers_nb)
+	while (++i < p->philosophers_nb)
 	{
-		if (p->i % 2 == 0)
-			checker = pthread_create(&p->thread_id[p->i],
+		if (i % 2 == 0)
+			checker = pthread_create(&p->thread_id[i],
 					NULL, &ft_newphilo, (void *) p);
 		if (checker != 0)
 			return (-1);
@@ -82,6 +82,7 @@ int	ft_createphilo(t_param *p)
 	{
 		if (p->dead == 1)
 			break ;
+		k++;
 	}
 	return (1);
 }

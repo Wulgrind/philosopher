@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:51:39 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/23 11:35:23 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 13:02:33 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	ft_routine2(t_param *p, int i)
 
 void	ft_routine(t_param *p, int i)
 {
-	char	*num;
-
 	pthread_mutex_lock(&p->fork[i]);
 	pthread_mutex_lock(&p->talk);
 	printf("(%i) Philosopher %i has taken a fork\n", ft_time(p), i + 1);
