@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:45:46 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/22 15:10:22 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:15:38 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_param
 	int	start;
 	int *eat;
 	int	dead;
+	int *eat2;
+	int	ac;
 } t_param;
 
 int	ft_parsing(t_param *p, char **av, int ac);

@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:39:22 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/23 10:12:04 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:17:45 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@ int	ft_malloceat(t_param *p)
 	if (!p->eat)
 		return (-1);
 	while (++i < p->philosophers_nb)
-	{
 		p->eat[i] = 0;
-	}
+	i = -1;
+	p->eat2 = malloc(sizeof(int) * p->philosophers_nb);
+	if (!p->eat2)
+		return (-1);
+	while (++i < p->philosophers_nb)
+		p->eat2[i] = 0;
 	return (1);
 }
 

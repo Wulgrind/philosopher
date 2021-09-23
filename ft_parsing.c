@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:52:15 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 12:23:06 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:07:50 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int	ft_parsing(t_param *p, char **av, int ac)
 	p-> end = 0;
 	if (ac == 6)
 		p->eat_nb = ft_atoi(av[5]);
+	p->ac = ac;
 	return (1);
 }

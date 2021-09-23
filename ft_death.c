@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:25:29 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/23 10:15:50 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:19:14 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_eat(t_param *p, int i)
 	gettimeofday(&t, NULL);
 	p->eat[i] = t.tv_sec * 1000;
 	p->eat[i] += t.tv_usec / 1000;
+	p->eat2[i] += 1;
 }
 
 void	ft_checkdeath(t_param *p)
@@ -39,6 +40,19 @@ void	ft_checkdeath(t_param *p)
 			printf("(%i) Philosopher %i died\n", ft_time(p), j + 1);
 			p->dead = 1;
 			break;
+		}
+	}
+	j = -1;
+	if (p->ac == 6)
+	{
+		while (++j < p->philosophers_nb)
+		{
+			if (p->eat2[j] == p->eat_nb + 1)
+			{
+				pthread_mutex_lock(&p->talk);
+				p->dead = 1;
+				break;
+			}
 		}
 	}
 }
