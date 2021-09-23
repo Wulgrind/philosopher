@@ -6,21 +6,21 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:59:06 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 12:24:46 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:29:56 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int neg;
-	int i;
-	int num;
+	int	neg;
+	int	i;
+	int	num;
 
 	i = 0;
 	neg = 1;
 	num = 0;
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
-			|| str[i] == '\f' || str[i] == '\r')
+		|| str[i] == '\f' || str[i] == '\r')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

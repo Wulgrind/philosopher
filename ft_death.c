@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:25:29 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/23 11:19:14 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 12:01:07 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,29 @@ void	ft_eat(t_param *p, int i)
 	p->eat2[i] += 1;
 }
 
-void	ft_checkdeath(t_param *p)
+void	ft_checkdeath2(t_param *p)
 {
 	int	j;
-	int	current;
+
+	j = -1;
+	if (p->ac == 6)
+	{
+		while (++j < p->philosophers_nb)
+		{
+			if (p->eat2[j] == p->eat_nb + 1)
+			{
+				pthread_mutex_lock(&p->talk);
+				p->dead = 1;
+				break ;
+			}
+		}
+	}
+}
+
+void	ft_checkdeath(t_param *p)
+{
+	int				j;
+	int				current;
 	struct timeval	t;
 
 	j = -1;
@@ -39,38 +58,26 @@ void	ft_checkdeath(t_param *p)
 			pthread_mutex_lock(&p->talk);
 			printf("(%i) Philosopher %i died\n", ft_time(p), j + 1);
 			p->dead = 1;
-			break;
+			break ;
 		}
 	}
-	j = -1;
-	if (p->ac == 6)
-	{
-		while (++j < p->philosophers_nb)
-		{
-			if (p->eat2[j] == p->eat_nb + 1)
-			{
-				pthread_mutex_lock(&p->talk);
-				p->dead = 1;
-				break;
-			}
-		}
-	}
+	ft_checkdeath2(p);
 }
 
 void	*ft_death(void	*v)
 {
 	t_param	*c;
 	t_param	p;
-	int	i;
+	int		i;
 
 	i = p.i;
-	c = (t_param *)	v;
+	c = (t_param *) v;
 	p = *c;
-	while(1)
+	while (1)
 	{
 		usleep(100);
 		if (c->dead == 1)
-			break;
+			break ;
 		ft_checkdeath(c);
 	}
 	return (NULL);

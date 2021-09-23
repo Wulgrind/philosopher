@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:34:48 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/22 15:39:53 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:37:05 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_timestart(t_param *p)
 
 int	ft_time(t_param *p)
 {
-	int	i;
+	int				i;
 	struct timeval	t;
 
 	if (p->start == 0)
@@ -34,7 +34,7 @@ int	ft_time(t_param *p)
 	}
 	gettimeofday(&t, NULL);
 	i = t.tv_sec * 1000;
-	i += t.tv_usec / 1000;	
+	i += t.tv_usec / 1000;
 	i -= p->start;
 	return (i);
 }

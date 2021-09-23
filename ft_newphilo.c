@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 10:51:39 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/23 10:18:11 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:35:23 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	ft_routine(t_param *p, int i)
 void	*ft_newphilo(void *v)
 {
 	t_param	*c;
-	t_param p;
+	t_param	p;
 	int		i;
-	
+
 	c = (t_param *) v;
 	p = *c;
 	i = p.i;

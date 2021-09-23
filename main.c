@@ -6,7 +6,7 @@
 /*   By: qbrillai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:28:07 by qbrillai          #+#    #+#             */
-/*   Updated: 2021/09/16 14:48:19 by qbrillai         ###   ########.fr       */
+/*   Updated: 2021/09/23 11:56:53 by qbrillai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_forks(&p);
+	ft_timestart(&p);
+	ft_mallocthread(&p);
+	ft_malloceat(&p);
 	ft_createphilo(&p);
 	return (0);
 }
